@@ -67,7 +67,7 @@ export function DeliveryNotice() {
           aria-modal="true"
           aria-labelledby="delivery-notice-title"
           aria-describedby="delivery-notice-text"
-          className="relative max-h-[90vh] max-h-[90dvh] w-full overflow-y-auto overscroll-contain rounded-t-[28px] bg-white px-6 pb-[max(env(safe-area-inset-bottom),24px)] pt-8 shadow-[0_-20px_60px_-20px_rgba(23,36,27,0.35)] sm:max-w-md sm:rounded-[28px] sm:p-8"
+          className="relative max-h-[90vh] max-h-[90dvh] w-full overflow-x-hidden overflow-y-auto overscroll-contain rounded-t-[28px] bg-white px-6 pb-[max(env(safe-area-inset-bottom),24px)] pt-8 shadow-[0_-20px_60px_-20px_rgba(23,36,27,0.35)] sm:max-w-md sm:rounded-[28px] sm:p-8"
           initial={{ opacity: 0, y: 24, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.98 }}
