@@ -41,7 +41,7 @@ export function MenuSection() {
   };
 
   return (
-    <section id="menu" aria-labelledby="menu-title" className="bg-white py-16 sm:py-24">
+    <section id="menu" aria-labelledby="menu-title" className="bg-white py-16 sm:py-24 xl:py-6">
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-xl">
@@ -176,7 +176,7 @@ export function MenuSection() {
           }
         </AnimatePresence>
 
-        <motion.ul layout className="mt-10 grid auto-rows-fr grid-cols-2 gap-3 sm:gap-6">
+        <motion.ul layout className="mt-10 grid auto-rows-fr grid-cols-2 gap-3 sm:gap-6 xl:mt-6 xl:grid-cols-3 xl:gap-4">
           <AnimatePresence mode="popLayout" initial={false}>
             {visible.map((item) =>
             <motion.li
