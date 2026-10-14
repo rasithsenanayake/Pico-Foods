@@ -56,7 +56,7 @@ export function MenuSection() {
           <div
             role="tablist"
             aria-label="Filter bowls"
-            className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 md:mx-0 md:px-0">
+            className="flex flex-wrap gap-2 md:justify-end">
 
             {tabs.map((tab) => {
               const active = filter === tab.id;
@@ -176,7 +176,7 @@ export function MenuSection() {
           }
         </AnimatePresence>
 
-        <motion.ul layout className="mt-10 grid auto-rows-fr grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        <motion.ul layout className="mt-10 grid auto-rows-fr grid-cols-2 gap-3 sm:gap-6">
           <AnimatePresence mode="popLayout" initial={false}>
             {visible.map((item) =>
             <motion.li

@@ -30,7 +30,7 @@ export function BowlCard({ item, categoryLabel, quantity, orderQuantity, onQuant
           src={item.image}
           alt={item.imageAlt}
           fill
-          sizes="(max-width: 639px) calc(50vw - 26px), (max-width: 1023px) calc(50vw - 36px), (max-width: 1151px) calc(33.333vw - 32px), 352px"
+          sizes="(max-width: 639px) calc(50vw - 26px), (max-width: 1151px) calc(50vw - 36px), 540px"
           className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" />
         <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2 py-1 text-[10px] font-semibold tabular-nums text-brand sm:left-4 sm:top-4 sm:px-2.5 sm:text-xs">
           {item.number}
