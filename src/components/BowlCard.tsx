@@ -68,7 +68,7 @@ export function BowlCard({ item, categoryLabel, quantity, orderQuantity, onQuant
               </li>
             )}
           </ul>
-          <p className="mt-2 line-clamp-3 min-h-14 text-xs leading-relaxed text-ink-muted sm:text-sm xl:mt-1 xl:line-clamp-2 xl:min-h-0 xl:text-xs xl:leading-tight">{item.description}</p>
+          <p className="mt-2 line-clamp-3 min-h-14 text-xs leading-relaxed text-ink-muted sm:text-sm">{item.description}</p>
         </div>
 
         <div className="mt-auto flex flex-col items-stretch gap-3 pt-5 sm:flex-row sm:items-center sm:pt-6 xl:pt-2">
