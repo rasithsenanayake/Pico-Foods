@@ -4,7 +4,7 @@ import { FloatingIngredients } from './FloatingIngredients';
 import { generalOrderLink } from '../utils/order';
 import type { Floater } from '../types/menu';
 
-const HERO_IMAGE = "/53c1e7a0-ac85-456b-abaa-e997d90e8b38.jpg";
+const HERO_IMAGE = "/53c1e7a0-ac85-456b-abaa-e997d90e8b38.webp";
 
 
 const bowlFloaters: Floater[] = [

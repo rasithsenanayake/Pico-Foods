@@ -16,7 +16,7 @@ export const menuItems: MenuItem[] = [
   description:
   'Rice, chicken, egg, fresh salad, sweet corn, avocado, nuts & our signature sauce.',
   ingredients: ['rice', 'chicken', 'egg', 'salad', 'corn', 'avocado', 'nuts', 'sauce'],
-  image: "/99b601dc-0a13-49f5-a6e0-1caa8e36a310.jpg",
+  image: "/99b601dc-0a13-49f5-a6e0-1caa8e36a310.webp",
 
   imageAlt: 'Chicken Power Bowl with rice, grilled chicken, egg, corn, avocado and greens'
 },
@@ -29,7 +29,7 @@ export const menuItems: MenuItem[] = [
   description:
   'Air-fried sweet potato, chicken, egg, fresh salad, sweet corn, avocado, nuts & our signature sauce.',
   ingredients: ['sweetPotato', 'chicken', 'egg', 'salad', 'corn', 'avocado', 'nuts', 'sauce'],
-  image: "/1a4f1504-7189-4213-9f20-745a5af666e5.jpg",
+  image: "/1a4f1504-7189-4213-9f20-745a5af666e5.webp",
 
   imageAlt: 'Chicken Sweet Potato Bowl with air-fried sweet potato, chicken, egg and avocado'
 },
@@ -41,7 +41,7 @@ export const menuItems: MenuItem[] = [
   category: 'salad',
   description: 'Creamy potato egg salad, chicken & our signature sauce.',
   ingredients: ['potato', 'egg', 'chicken', 'sauce'],
-  image: "/953281d1-6a4a-4dbc-9ded-39dee4ca4c41.jpg",
+  image: "/953281d1-6a4a-4dbc-9ded-39dee4ca4c41.webp",
 
   imageAlt: 'Creamy potato and egg salad with chicken'
 },
@@ -53,7 +53,7 @@ export const menuItems: MenuItem[] = [
   category: 'salad',
   description: 'Fresh carrot, red cabbage, gherkins, avocado & our signature sauce.',
   ingredients: ['carrot', 'cabbage', 'gherkin', 'avocado', 'sauce'],
-  image: "/378b7f7e-443d-481b-9197-b64c2c0409a7.jpg",
+  image: "/378b7f7e-443d-481b-9197-b64c2c0409a7.webp",
 
   imageAlt: 'Rainbow salad with carrot, red cabbage, gherkins and avocado'
 },
@@ -66,7 +66,7 @@ export const menuItems: MenuItem[] = [
   description:
   'Grilled chicken, avocado, fresh greens, carrot, cucumber, tomatoes & our signature sauce.',
   ingredients: ['chicken', 'avocado', 'greens', 'carrot', 'cucumber', 'tomato', 'sauce'],
-  image: "/a261b686-a843-4382-b968-0bef415d2e7a.jpg",
+  image: "/a261b686-a843-4382-b968-0bef415d2e7a.webp",
 
   imageAlt: 'Garden salad with grilled chicken, avocado, cucumber and tomatoes'
 },
@@ -79,7 +79,7 @@ export const menuItems: MenuItem[] = [
   description:
   'Air-fried potatoes, garlic-seasoned chicken, fresh vegetables & our signature sauce.',
   ingredients: ['potato', 'chicken', 'garlic', 'herbs', 'veggies', 'sauce'],
-  image: "/4d4e921e-cccb-439d-b293-294ae7e679f9.jpg",
+  image: "/4d4e921e-cccb-439d-b293-294ae7e679f9.webp",
 
   imageAlt: 'Garlic herb chicken with air-fried potatoes and roasted vegetables'
 }];

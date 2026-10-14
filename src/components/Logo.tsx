@@ -7,7 +7,7 @@ interface LogoProps {
 export function Logo({ className = '' }: LogoProps) {
   return (
     <Image
-      src="/pico-foods-logo.png"
+      src="/pico-foods-logo.webp"
       alt="Pico Foods"
       width={1774}
       height={887}

@@ -12,7 +12,7 @@ tags:
 
 ## Decision
 
-Convert the Pico Foods Vite storefront to the Next.js App Router for Vercel hosting. Keep the existing menu and WhatsApp ordering flow, use the transparent PNG made from the supplied logo in the header and footer, and derive the shared green, gold, and neutral palette from that logo. Keep the original JPEG unchanged.
+Convert the Pico Foods Vite storefront to the Next.js App Router for Vercel hosting. Keep the existing menu and WhatsApp ordering flow, use the supplied logo in the header and footer, and derive the shared green, gold, and neutral palette from that logo. For faster image delivery, serve the logo, hero, and menu photos as WebP, then remove unused source images from `public/` after confirming all references use the converted files.
 
 ## Verification
 
