@@ -23,6 +23,44 @@ body {
   scrollbar-width: none;
 }
 
+.mobile-safe-bottom {
+  padding-bottom: calc(61px + max(env(safe-area-inset-bottom), 12px));
+}
+
+#menu [role="tab"],
+header nav a,
+[role="group"][aria-label="Social media"] a,
+[role="dialog"] > button[aria-label="Close"],
+footer a[href^="tel:"] {
+  min-height: 44px;
+}
+
+[role="group"][aria-label="Social media"] a {
+  min-width: 44px;
+}
+
+[role="dialog"] > button[aria-label="Close"] {
+  min-width: 44px;
+}
+
+header nav a,
+footer a[href^="tel:"] {
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 479px) {
+  #menu > div > ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-safe-bottom {
+    padding-bottom: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

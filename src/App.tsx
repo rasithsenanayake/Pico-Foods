@@ -10,7 +10,7 @@ import { MobileOrderBar } from './components/MobileOrderBar';
 
 export function App() {
   return (
-    <div className="min-h-screen w-full bg-cream pb-[76px] font-sans text-ink md:pb-0">
+    <div className="mobile-safe-bottom min-h-screen w-full bg-cream font-sans text-ink">
       <DeliveryNotice />
       <Header />
       <main>

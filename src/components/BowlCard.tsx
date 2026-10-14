@@ -25,7 +25,7 @@ export function BowlCard({ item, categoryLabel, quantity, orderQuantity, onQuant
           src={item.image}
           alt={item.imageAlt}
           fill
-          sizes="(max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 479px) calc(100vw - 40px), (max-width: 639px) calc(50vw - 26px), (max-width: 1023px) calc(50vw - 36px), (max-width: 1151px) calc(33.333vw - 32px), 352px"
           className="object-cover" />
         <span className="absolute left-4 top-4 rounded-full bg-white/95 px-2.5 py-1 text-xs font-semibold tabular-nums text-brand">
           {item.number}
