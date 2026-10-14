@@ -20,7 +20,12 @@ export function BowlCard({ item, categoryLabel, quantity, orderQuantity, onQuant
   const isUpToDate = orderQuantity === quantity;
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-[0_1px_2px_rgba(23,36,27,0.04),0_12px_32px_-16px_rgba(23,36,27,0.18)] ring-1 ring-line">
+    <article
+      onClick={(event) => {
+        if ((event.target as HTMLElement).closest('button')) return;
+        onPreview();
+      }}
+      className="flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl bg-white shadow-[0_1px_2px_rgba(23,36,27,0.04),0_12px_32px_-16px_rgba(23,36,27,0.18)] ring-1 ring-line">
       <button
         type="button"
         onClick={onPreview}
