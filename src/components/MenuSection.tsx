@@ -85,6 +85,63 @@ export function MenuSection() {
           </div>
         </div>
 
+        {orderItems.length > 0 &&
+        <button
+          type="button"
+          onClick={() => document.getElementById('menu-order')?.scrollIntoView({
+            behavior: reduceMotion ? 'auto' : 'smooth',
+            block: 'start',
+          })}
+          aria-controls="menu-order"
+          aria-label={`View your order, ${orderCount} ${orderCount === 1 ? 'item' : 'items'}`}
+          className="fixed bottom-24 right-4 z-40 inline-flex h-12 items-center gap-2 rounded-full bg-brand px-4 text-sm font-semibold text-white shadow-lg transition-colors hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 md:bottom-6">
+          <ShoppingCartIcon className="h-5 w-5" aria-hidden="true" />
+          <span>Your order</span>
+          <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-white px-1.5 text-xs font-bold text-brand" aria-hidden="true">{orderCount}</span>
+        </button>
+        }
+
+        <AnimatePresence>
+          {notification &&
+          <motion.p
+            role="status"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            className="fixed bottom-40 left-4 right-4 z-50 flex justify-center rounded-full bg-ink px-5 py-3 text-center text-sm font-medium text-white shadow-lg md:bottom-6 md:left-6 md:right-auto">
+            {notification}
+          </motion.p>
+          }
+        </AnimatePresence>
+
+        <motion.ul layout className="mt-10 grid auto-rows-fr grid-cols-2 gap-3 sm:gap-6 xl:mt-6 xl:grid-cols-3 xl:gap-4">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {visible.map((item) =>
+            <motion.li
+              key={item.id}
+              className="h-full"
+              layout
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.22, ease }}>
+
+                <BowlCard
+                  item={item}
+                  categoryLabel={labelFor(item.category)}
+                  quantity={quantities[item.id] ?? order[item.id] ?? 1}
+                  orderQuantity={order[item.id]}
+                  onQuantityChange={(quantity) => setQuantities((current) => ({ ...current, [item.id]: quantity }))}
+                  onPreview={() => setPreviewItem(item)}
+                  onAddToOrder={() => {
+                    const quantity = quantities[item.id] ?? order[item.id] ?? 1;
+                    setOrder((current) => ({ ...current, [item.id]: quantity }));
+                    notify(order[item.id] ? `Updated ${item.name} in your order` : `Added ${item.name} to your order`);
+                  }} />
+              </motion.li>
+            )}
+          </AnimatePresence>
+        </motion.ul>
         <AnimatePresence initial={false}>
         {orderItems.length > 0 &&
         <motion.section key="order" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, scale: reduceMotion ? 1 : 0.96, filter: reduceMotion ? "none" : "blur(8px)" }} transition={{ duration: reduceMotion ? 0 : 0.3 }} id="menu-order" aria-labelledby="menu-order-title" className="mt-8 rounded-2xl bg-brand-soft p-4 ring-1 ring-line sm:p-5">
@@ -146,64 +203,6 @@ export function MenuSection() {
         </motion.section>
         }
         </AnimatePresence>
-
-        {orderItems.length > 0 &&
-        <button
-          type="button"
-          onClick={() => document.getElementById('menu-order')?.scrollIntoView({
-            behavior: reduceMotion ? 'auto' : 'smooth',
-            block: 'start',
-          })}
-          aria-controls="menu-order"
-          aria-label={`View your order, ${orderCount} ${orderCount === 1 ? 'item' : 'items'}`}
-          className="fixed bottom-24 right-4 z-40 inline-flex h-12 items-center gap-2 rounded-full bg-brand px-4 text-sm font-semibold text-white shadow-lg transition-colors hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 md:bottom-6">
-          <ShoppingCartIcon className="h-5 w-5" aria-hidden="true" />
-          <span>Your order</span>
-          <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-white px-1.5 text-xs font-bold text-brand" aria-hidden="true">{orderCount}</span>
-        </button>
-        }
-
-        <AnimatePresence>
-          {notification &&
-          <motion.p
-            role="status"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 8 }}
-            className="fixed bottom-40 left-4 right-4 z-50 flex justify-center rounded-full bg-ink px-5 py-3 text-center text-sm font-medium text-white shadow-lg md:bottom-6 md:left-6 md:right-auto">
-            {notification}
-          </motion.p>
-          }
-        </AnimatePresence>
-
-        <motion.ul layout className="mt-10 grid auto-rows-fr grid-cols-2 gap-3 sm:gap-6 xl:mt-6 xl:grid-cols-3 xl:gap-4">
-          <AnimatePresence mode="popLayout" initial={false}>
-            {visible.map((item) =>
-            <motion.li
-              key={item.id}
-              className="h-full"
-              layout
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.22, ease }}>
-
-                <BowlCard
-                  item={item}
-                  categoryLabel={labelFor(item.category)}
-                  quantity={quantities[item.id] ?? order[item.id] ?? 1}
-                  orderQuantity={order[item.id]}
-                  onQuantityChange={(quantity) => setQuantities((current) => ({ ...current, [item.id]: quantity }))}
-                  onPreview={() => setPreviewItem(item)}
-                  onAddToOrder={() => {
-                    const quantity = quantities[item.id] ?? order[item.id] ?? 1;
-                    setOrder((current) => ({ ...current, [item.id]: quantity }));
-                    notify(order[item.id] ? `Updated ${item.name} in your order` : `Added ${item.name} to your order`);
-                  }} />
-              </motion.li>
-            )}
-          </AnimatePresence>
-        </motion.ul>
         <BowlPreview
           item={previewItem}
           categoryLabel={previewItem ? labelFor(previewItem.category) : ''}
