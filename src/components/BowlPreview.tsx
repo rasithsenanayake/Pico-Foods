@@ -36,7 +36,7 @@ export function BowlPreview({ item, categoryLabel, onClose }: BowlPreviewProps) 
         onClick={(event) => {
           if (event.target === event.currentTarget) dialogRef.current?.close();
         }}>
-        <article className="relative max-h-[90vh] max-h-[90dvh] w-full max-w-lg overflow-y-auto overscroll-contain rounded-t-[28px] bg-white shadow-[0_-20px_60px_-20px_rgba(23,36,27,0.35)] sm:rounded-[28px]">
+        <article className="relative max-h-[90vh] max-h-[90dvh] w-full max-w-lg overflow-y-auto overscroll-contain rounded-t-[28px] bg-white shadow-[0_-20px_60px_-20px_rgba(23,36,27,0.35)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:rounded-[28px]">
           <div className="relative aspect-[16/9] overflow-hidden bg-brand-soft">
             <Image
               src={item.image}
