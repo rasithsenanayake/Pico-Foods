@@ -16,6 +16,7 @@ export type IngredientKey =
 'cucumber' |
 'tomato' |
 'garlic' |
+'herbs' |
 'veggies';
 
 export type MenuCategory = 'rice' | 'sweet-potato' | 'salad';

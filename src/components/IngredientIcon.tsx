@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import { CarrotIcon, DropletIcon, DrumstickIcon, EggIcon, LeafyGreenIcon, NutIcon, SaladIcon, WheatIcon } from 'lucide-react';
+import { CarrotIcon, DropletIcon, DrumstickIcon, EggIcon, LeafyGreenIcon, NutIcon, SaladIcon } from 'lucide-react';
 import {
   AvocadoGlyph,
   CabbageGlyph,
@@ -8,6 +8,7 @@ import {
   GarlicGlyph,
   GherkinGlyph,
   PotatoGlyph,
+  RiceGlyph,
   SweetPotatoGlyph,
   TomatoGlyph } from
 './IngredientGlyphs';
@@ -16,7 +17,7 @@ import type { IngredientKey } from '../types/menu';
 type IconComponent = (props: {className?: string;}) => ReactElement;
 
 const icons: Record<IngredientKey, IconComponent> = {
-  rice: ({ className }) => <WheatIcon className={className} strokeWidth={1.75} />,
+  rice: RiceGlyph,
   chicken: ({ className }) => <DrumstickIcon className={className} strokeWidth={1.75} />,
   egg: ({ className }) => <EggIcon className={className} strokeWidth={1.75} />,
   salad: ({ className }) => <SaladIcon className={className} strokeWidth={1.75} />,
@@ -33,7 +34,30 @@ const icons: Record<IngredientKey, IconComponent> = {
   gherkin: GherkinGlyph,
   cucumber: CucumberGlyph,
   tomato: TomatoGlyph,
-  garlic: GarlicGlyph
+  garlic: GarlicGlyph,
+  herbs: ({ className }) => <LeafyGreenIcon className={className} strokeWidth={1.75} />
+};
+
+const iconColors: Record<IngredientKey, string> = {
+  rice: 'text-amber-800',
+  chicken: 'text-orange-900',
+  egg: 'text-yellow-800',
+  salad: 'text-emerald-800',
+  corn: 'text-yellow-700',
+  avocado: 'text-lime-800',
+  nuts: 'text-stone-700',
+  sauce: 'text-red-800',
+  sweetPotato: 'text-orange-700',
+  potato: 'text-amber-700',
+  carrot: 'text-orange-800',
+  cabbage: 'text-fuchsia-800',
+  gherkin: 'text-green-800',
+  greens: 'text-green-700',
+  cucumber: 'text-teal-800',
+  tomato: 'text-red-700',
+  garlic: 'text-stone-600',
+  herbs: 'text-lime-700',
+  veggies: 'text-emerald-700'
 };
 
 interface IngredientIconProps {
@@ -43,5 +67,5 @@ interface IngredientIconProps {
 
 export function IngredientIcon({ ingredient, className }: IngredientIconProps) {
   const Icon = icons[ingredient];
-  return <Icon className={className} />;
+  return <Icon className={className ? `${className} ${iconColors[ingredient]}` : iconColors[ingredient]} />;
 }

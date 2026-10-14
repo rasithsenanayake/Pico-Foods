@@ -78,7 +78,7 @@ export const menuItems: MenuItem[] = [
   category: 'salad',
   description:
   'Air-fried potatoes, garlic-seasoned chicken, fresh vegetables & our signature sauce.',
-  ingredients: ['potato', 'chicken', 'garlic', 'veggies', 'sauce'],
+  ingredients: ['potato', 'chicken', 'garlic', 'herbs', 'veggies', 'sauce'],
   image: "/4d4e921e-cccb-439d-b293-294ae7e679f9.jpg",
 
   imageAlt: 'Garlic herb chicken with air-fried potatoes and roasted vegetables'

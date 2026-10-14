@@ -29,6 +29,17 @@ export function CornGlyph({ className }: GlyphProps) {
 
 }
 
+export function RiceGlyph({ className }: GlyphProps) {
+  return (
+    <Glyph className={className}>
+      <ellipse cx="7" cy="7" rx="1.4" ry="2.8" transform="rotate(-25 7 7)" />
+      <ellipse cx="12" cy="5.5" rx="1.4" ry="2.8" transform="rotate(15 12 5.5)" />
+      <ellipse cx="17" cy="7" rx="1.4" ry="2.8" transform="rotate(30 17 7)" />
+      <path d="M4 13h16l-2 7H6l-2-7z" />
+      <path d="M4.5 13c1 1.5 2.5 2.2 7.5 2.2s6.5-.7 7.5-2.2" />
+    </Glyph>);
+}
+
 export function AvocadoGlyph({ className }: GlyphProps) {
   return (
     <Glyph className={className}>

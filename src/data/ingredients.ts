@@ -18,5 +18,6 @@ export const ingredientLabels: Record<IngredientKey, string> = {
   cucumber: 'Cucumber',
   tomato: 'Tomato',
   garlic: 'Garlic',
+  herbs: 'Herbs',
   veggies: 'Vegetables'
 };
