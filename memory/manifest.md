@@ -26,7 +26,7 @@ Next.js App Router, React, TypeScript, Tailwind CSS; static page with WhatsApp o
 
 ## Active Area
 
-Vercel import after the repository push.
+Maintain the live Vercel storefront.
 
 ## Durable Constraints
 

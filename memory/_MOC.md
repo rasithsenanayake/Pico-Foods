@@ -10,7 +10,7 @@ tags:
 Human and Obsidian navigation only. Agent retrieval uses the context compiler, not this file.
 
 - [[manifest]] — fixed-size project overview
-- [[decisions/2026-10-14-nextjs-vercel]] — Next.js App Router conversion and logo-led brand palette
+- [[decisions/2026-10-14-nextjs-vercel]] — Next.js setup, Vercel route fix, and logo-led brand palette
 - `cards/` — compact durable knowledge
 - `decisions/` — architecture and product decisions
 - `patterns/` — verified reusable implementation patterns

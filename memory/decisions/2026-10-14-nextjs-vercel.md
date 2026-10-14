@@ -22,4 +22,4 @@ Convert the Pico Foods Vite storefront to the Next.js App Router for Vercel host
 
 ## Deployment
 
-The repository push is separate from deployment. Import the repository in Vercel; no Vercel project or production deployment was created in this change.
+The Vercel project had no framework preset (`framework: null`), so deployments built Next.js but returned Vercel 404s. Set the project preset to Next.js and pin it in `vercel.json`. Commit `c9f79b1` deployed successfully; both `https://picofoods.vercel.app/` and the deployment URL returned HTTP 200.
