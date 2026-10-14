@@ -1,5 +1,6 @@
 import { MapPinIcon, MessageCircleIcon } from 'lucide-react';
 import { Logo } from './Logo';
+import { SocialLinks } from './SocialLinks';
 import { generalOrderLink } from '../utils/order';
 
 const navLinks = [
@@ -29,10 +30,11 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-3 py-1.5 text-xs font-medium text-brand md:hidden">
+          <span className="hidden items-center gap-1.5 rounded-full bg-brand-soft px-3 py-1.5 text-xs font-medium text-brand sm:inline-flex md:hidden">
             <MapPinIcon className="h-3.5 w-3.5" aria-hidden="true" />
             Homagama
           </span>
+          <SocialLinks />
           <a
             href={generalOrderLink}
             target="_blank"

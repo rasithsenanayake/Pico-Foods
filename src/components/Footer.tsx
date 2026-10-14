@@ -1,5 +1,6 @@
 import { MapPinIcon, PhoneIcon } from 'lucide-react';
 import { Logo } from './Logo';
+import { SocialLinks } from './SocialLinks';
 import { contact } from '../data/contact';
 
 export function Footer() {
@@ -19,9 +20,7 @@ export function Footer() {
             <PhoneIcon className="h-4 w-4 text-brand" aria-hidden="true" />
             {contact.phoneDisplay}
           </a>
-          <a href={contact.socialLinks.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href={contact.socialLinks.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a href={contact.socialLinks.tiktok} target="_blank" rel="noopener noreferrer">TikTok</a>
+          <SocialLinks />
         </div>
       </div>
       <div className="border-t border-line">
