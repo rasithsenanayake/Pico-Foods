@@ -40,17 +40,16 @@ export function BowlCard({ item, categoryLabel, quantity, orderQuantity, onQuant
             {formatRs(item.price)}
           </p>
         </div>
-        <p className="mt-2 text-xs leading-relaxed text-ink-muted sm:text-sm">{item.description}</p>
+        <p className="mt-2 line-clamp-3 min-h-14 text-xs leading-relaxed text-ink-muted sm:text-sm">{item.description}</p>
 
         <div className="mt-4 border-t border-line pt-3 sm:mt-5 sm:pt-4">
           <p className="text-[11px] font-semibold text-ink sm:text-xs">What's inside</p>
-          <ul className="mt-3 grid grid-cols-4 gap-y-3 sm:gap-x-1">
+          <ul className="mt-2 grid grid-cols-3 gap-x-1 gap-y-2 sm:grid-cols-4">
             {item.ingredients.map((ingredient) =>
-            <li key={ingredient} className="flex min-w-0 flex-col items-center gap-1.5 text-center">
-                <span className="grid h-6 w-6 place-items-center rounded-full bg-brand-soft text-brand sm:h-10 sm:w-10">
-                  <IngredientIcon ingredient={ingredient} className="h-4 w-4 sm:h-5 sm:w-5" />
+            <li key={ingredient} className="flex justify-center">
+                <span role="img" aria-label={ingredientLabels[ingredient]} title={ingredientLabels[ingredient]} className="grid h-8 w-8 place-items-center rounded-full bg-brand-soft text-brand sm:h-10 sm:w-10">
+                  <IngredientIcon ingredient={ingredient} className="h-5 w-5 sm:h-6 sm:w-6" />
                 </span>
-                <span className="break-words text-[10px] leading-tight text-ink-muted sm:text-[11px]">{ingredientLabels[ingredient]}</span>
               </li>
             )}
           </ul>
@@ -83,7 +82,7 @@ export function BowlCard({ item, categoryLabel, quantity, orderQuantity, onQuant
             type="button"
             onClick={onAddToOrder}
             disabled={isInOrder && isUpToDate}
-            className="inline-flex h-11 w-full flex-1 items-center justify-center whitespace-nowrap rounded-full bg-brand px-3 text-sm font-semibold text-white transition-[background-color,transform] duration-150 hover:bg-brand-dark active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-default disabled:opacity-75">
+            className="inline-flex h-12 min-h-12 w-full shrink-0 flex-1 items-center justify-center whitespace-nowrap rounded-full bg-brand px-3 text-sm font-semibold text-white transition-[background-color,transform] duration-150 hover:bg-brand-dark active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-default disabled:opacity-75">
             {!isInOrder ? 'Add to order' : isUpToDate ? 'Added' : 'Update order'}
           </button>
         </div>

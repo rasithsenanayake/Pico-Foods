@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import { CarrotIcon, DropletIcon, DrumstickIcon, EggIcon, LeafyGreenIcon, NutIcon, SaladIcon } from 'lucide-react';
+import { CarrotIcon, DropletIcon, DrumstickIcon, EggIcon, LeafyGreenIcon, NutIcon, SaladIcon, SproutIcon, VeganIcon } from 'lucide-react';
 import {
   AvocadoGlyph,
   CabbageGlyph,
@@ -18,14 +18,14 @@ type IconComponent = (props: {className?: string;}) => ReactElement;
 
 const icons: Record<IngredientKey, IconComponent> = {
   rice: RiceGlyph,
-  chicken: ({ className }) => <DrumstickIcon className={className} strokeWidth={1.75} />,
-  egg: ({ className }) => <EggIcon className={className} strokeWidth={1.75} />,
-  salad: ({ className }) => <SaladIcon className={className} strokeWidth={1.75} />,
-  nuts: ({ className }) => <NutIcon className={className} strokeWidth={1.75} />,
-  sauce: ({ className }) => <DropletIcon className={className} strokeWidth={1.75} />,
-  carrot: ({ className }) => <CarrotIcon className={className} strokeWidth={1.75} />,
-  greens: ({ className }) => <LeafyGreenIcon className={className} strokeWidth={1.75} />,
-  veggies: ({ className }) => <SaladIcon className={className} strokeWidth={1.75} />,
+  chicken: ({ className }) => <DrumstickIcon className={className} strokeWidth={2} />,
+  egg: ({ className }) => <EggIcon className={className} strokeWidth={2} />,
+  salad: ({ className }) => <SaladIcon className={className} strokeWidth={2} />,
+  nuts: ({ className }) => <NutIcon className={className} strokeWidth={2} />,
+  sauce: ({ className }) => <DropletIcon className={className} strokeWidth={2} />,
+  carrot: ({ className }) => <CarrotIcon className={className} strokeWidth={2} />,
+  greens: ({ className }) => <LeafyGreenIcon className={className} strokeWidth={2} />,
+  veggies: ({ className }) => <VeganIcon className={className} strokeWidth={2} />,
   corn: CornGlyph,
   avocado: AvocadoGlyph,
   sweetPotato: SweetPotatoGlyph,
@@ -35,7 +35,7 @@ const icons: Record<IngredientKey, IconComponent> = {
   cucumber: CucumberGlyph,
   tomato: TomatoGlyph,
   garlic: GarlicGlyph,
-  herbs: ({ className }) => <LeafyGreenIcon className={className} strokeWidth={1.75} />
+  herbs: ({ className }) => <SproutIcon className={className} strokeWidth={2} />
 };
 
 const iconColors: Record<IngredientKey, string> = {

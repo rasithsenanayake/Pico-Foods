@@ -1,7 +1,7 @@
 export const contact = {
-  phoneDisplay: '077 064 1011',
-  phoneTel: '+94770641011',
-  whatsapp: '94770641011',
+  phoneDisplay: '070 447 8160',
+  phoneTel: '+94704478160',
+  whatsapp: '94704478160',
   location: 'Homagama, Sri Lanka',
   socialLinks: {
     instagram: 'https://www.instagram.com/picofoodssl/',
