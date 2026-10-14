@@ -48,7 +48,7 @@ export function BowlCard({ item, categoryLabel, quantity, orderQuantity, onQuant
       <div className="flex flex-1 flex-col p-2 sm:p-4 lg:p-6 xl:p-3">
         <p className="text-xs font-medium text-brand">{categoryLabel}</p>
         <div className="mt-1.5 flex flex-col gap-1 lg:flex-row lg:items-start lg:justify-between lg:gap-4">
-          <h3 className="font-display text-base font-semibold leading-snug text-ink sm:text-lg lg:text-xl xl:text-lg">
+          <h3 className="font-display text-base font-semibold leading-snug text-ink sm:text-lg lg:text-xl xl:min-h-[44px] xl:text-lg">
             <button type="button" onClick={onPreview} className="text-left focus:outline-none focus-visible:underline">
               {item.name}
             </button>
