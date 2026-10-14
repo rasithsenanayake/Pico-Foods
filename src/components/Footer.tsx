@@ -32,9 +32,9 @@ export function Footer() {
               href="https://www.thewebxagency.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-ink underline underline-offset-2 transition-colors hover:text-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+              className="font-bold text-ink transition-colors hover:text-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
             >
-              WebX Agency
+              Web<span className="text-[#d4ff63]">X</span> Agency
             </a>
           </span>
         </p>
