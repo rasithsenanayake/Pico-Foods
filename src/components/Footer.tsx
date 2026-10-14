@@ -26,6 +26,17 @@ export function Footer() {
       <div className="border-t border-line">
         <p className="mx-auto max-w-6xl px-5 py-5 text-xs text-ink-muted sm:px-6">
           © {new Date().getFullYear()} Pico Foods. Delivery available in the Homagama area only.
+          <span className="mt-1 block">
+            Powered by{' '}
+            <a
+              href="https://www.thewebxagency.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-ink underline underline-offset-2 transition-colors hover:text-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+            >
+              WebX Agency
+            </a>
+          </span>
         </p>
       </div>
     </footer>);
