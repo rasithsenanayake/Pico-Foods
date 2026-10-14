@@ -49,12 +49,6 @@ footer a[href^="tel:"] {
   align-items: center;
 }
 
-@media (max-width: 479px) {
-  #menu > div > ul {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
 @media (min-width: 768px) {
   .mobile-safe-bottom {
     padding-bottom: 0;

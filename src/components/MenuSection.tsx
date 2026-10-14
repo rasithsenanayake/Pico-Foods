@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ShoppingCartIcon } from 'lucide-react';
-import { animateBowl } from '../utils/animateBowl';
 import { BowlCard } from './BowlCard';
+import { BowlPreview } from './BowlPreview';
 import { categories, menuItems } from '../data/menu';
 import { formatRs, orderItemsLink } from '../utils/order';
-import type { MenuCategory } from '../types/menu';
+import type { MenuCategory, MenuItem } from '../types/menu';
 
 type Filter = 'all' | MenuCategory;
 
@@ -13,12 +13,11 @@ const ease = [0.23, 1, 0.32, 1] as const;
 
 export function MenuSection() {
   const reduceMotion = useReducedMotion();
-  const cartRef = useRef<HTMLAnchorElement>(null);
-  const bowlRefs = useRef(new Map<string, HTMLLIElement>());
   const [filter, setFilter] = useState<Filter>('all');
   const [quantities, setQuantities] = useState<Record<string, number>>({});
   const [order, setOrder] = useState<Record<string, number>>({});
   const [deliveryAddress, setDeliveryAddress] = useState('');
+  const [previewItem, setPreviewItem] = useState<MenuItem | null>(null);
   const [notification, setNotification] = useState('');
   const notificationTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -149,15 +148,19 @@ export function MenuSection() {
         </AnimatePresence>
 
         {orderItems.length > 0 &&
-        <a
-          ref={cartRef}
-          href="#menu-order"
+        <button
+          type="button"
+          onClick={() => document.getElementById('menu-order')?.scrollIntoView({
+            behavior: reduceMotion ? 'auto' : 'smooth',
+            block: 'start',
+          })}
+          aria-controls="menu-order"
           aria-label={`View your order, ${orderCount} ${orderCount === 1 ? 'item' : 'items'}`}
           className="fixed bottom-24 right-4 z-40 inline-flex h-12 items-center gap-2 rounded-full bg-brand px-4 text-sm font-semibold text-white shadow-lg transition-colors hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 md:bottom-6">
           <ShoppingCartIcon className="h-5 w-5" aria-hidden="true" />
           <span>Your order</span>
           <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-white px-1.5 text-xs font-bold text-brand" aria-hidden="true">{orderCount}</span>
-        </a>
+        </button>
         }
 
         <AnimatePresence>
@@ -178,10 +181,6 @@ export function MenuSection() {
             {visible.map((item) =>
             <motion.li
               key={item.id}
-              ref={(node) => {
-                if (node) bowlRefs.current.set(item.id, node);
-                else bowlRefs.current.delete(item.id);
-              }}
               className="h-full"
               layout
               initial={{ opacity: 0, scale: 0.96 }}
@@ -195,8 +194,8 @@ export function MenuSection() {
                   quantity={quantities[item.id] ?? order[item.id] ?? 1}
                   orderQuantity={order[item.id]}
                   onQuantityChange={(quantity) => setQuantities((current) => ({ ...current, [item.id]: quantity }))}
+                  onPreview={() => setPreviewItem(item)}
                   onAddToOrder={() => {
-                    animateBowl(bowlRefs.current.get(item.id)?.querySelector("img") ?? null, () => cartRef.current);
                     const quantity = quantities[item.id] ?? order[item.id] ?? 1;
                     setOrder((current) => ({ ...current, [item.id]: quantity }));
                     notify(order[item.id] ? `Updated ${item.name} in your order` : `Added ${item.name} to your order`);
@@ -205,6 +204,10 @@ export function MenuSection() {
             )}
           </AnimatePresence>
         </motion.ul>
+        <BowlPreview
+          item={previewItem}
+          categoryLabel={previewItem ? labelFor(previewItem.category) : ''}
+          onClose={() => setPreviewItem(null)} />
       </div>
     </section>);
 

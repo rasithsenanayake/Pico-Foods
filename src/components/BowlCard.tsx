@@ -12,47 +12,58 @@ interface BowlCardProps {
   orderQuantity?: number;
   onQuantityChange: (quantity: number) => void;
   onAddToOrder: () => void;
+  onPreview: () => void;
 }
 
-export function BowlCard({ item, categoryLabel, quantity, orderQuantity, onQuantityChange, onAddToOrder }: BowlCardProps) {
+export function BowlCard({ item, categoryLabel, quantity, orderQuantity, onQuantityChange, onAddToOrder, onPreview }: BowlCardProps) {
   const isInOrder = orderQuantity !== undefined;
   const isUpToDate = orderQuantity === quantity;
 
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-[0_1px_2px_rgba(23,36,27,0.04),0_12px_32px_-16px_rgba(23,36,27,0.18)] ring-1 ring-line">
-      <div className="relative aspect-[4/3] overflow-hidden bg-brand-soft">
+      <button
+        type="button"
+        onClick={onPreview}
+        aria-label={`View details for ${item.name}`}
+        className="group relative block aspect-[4/3] w-full overflow-hidden bg-brand-soft text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand">
         <Image
           src={item.image}
           alt={item.imageAlt}
           fill
-          sizes="(max-width: 479px) calc(100vw - 40px), (max-width: 639px) calc(50vw - 26px), (max-width: 1023px) calc(50vw - 36px), (max-width: 1151px) calc(33.333vw - 32px), 352px"
-          className="object-cover" />
-        <span className="absolute left-4 top-4 rounded-full bg-white/95 px-2.5 py-1 text-xs font-semibold tabular-nums text-brand">
+          sizes="(max-width: 639px) calc(50vw - 26px), (max-width: 1023px) calc(50vw - 36px), (max-width: 1151px) calc(33.333vw - 32px), 352px"
+          className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" />
+        <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2 py-1 text-[10px] font-semibold tabular-nums text-brand sm:left-4 sm:top-4 sm:px-2.5 sm:text-xs">
           {item.number}
         </span>
-      </div>
+        <span className="absolute bottom-2 right-2 rounded-full bg-white/95 px-2 py-1 text-[10px] font-semibold text-brand sm:bottom-3 sm:right-3 sm:text-xs">
+          View details
+        </span>
+      </button>
 
-      <div className="flex flex-1 flex-col p-3 sm:p-6">
+      <div className="flex flex-1 flex-col p-2 sm:p-4 lg:p-6">
         <p className="text-xs font-medium text-brand">{categoryLabel}</p>
-        <div className="mt-1.5 flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-          <h3 className="font-display text-lg font-semibold leading-snug text-ink sm:text-xl">{item.name}</h3>
-          <p className="shrink-0 whitespace-nowrap font-display text-lg font-semibold text-brand sm:text-xl">
+        <div className="mt-1.5 flex flex-col gap-1 lg:flex-row lg:items-start lg:justify-between lg:gap-4">
+          <h3 className="font-display text-base font-semibold leading-snug text-ink sm:text-lg lg:text-xl">
+            <button type="button" onClick={onPreview} className="text-left focus:outline-none focus-visible:underline">
+              {item.name}
+            </button>
+          </h3>
+          <p className="shrink-0 whitespace-nowrap font-display text-base font-semibold text-brand sm:text-lg lg:text-xl">
             {formatRs(item.price)}
           </p>
         </div>
-        <p className="mt-2 line-clamp-3 min-h-14 text-xs leading-relaxed text-ink-muted sm:text-sm">{item.description}</p>
-
         <div className="mt-4 border-t border-line pt-3 sm:mt-5 sm:pt-4">
           <p className="text-[11px] font-semibold text-ink sm:text-xs">What's inside</p>
-          <ul className="mt-2 grid grid-cols-3 gap-x-1 gap-y-2 sm:grid-cols-4">
+          <ul className="mt-2 flex flex-nowrap items-center justify-between gap-0 min-[480px]:gap-0.5 sm:gap-1 md:gap-0.5 lg:gap-1">
             {item.ingredients.map((ingredient) =>
-            <li key={ingredient} className="flex justify-center">
-                <span role="img" aria-label={ingredientLabels[ingredient]} title={ingredientLabels[ingredient]} className="grid h-8 w-8 place-items-center rounded-full bg-brand-soft text-brand sm:h-10 sm:w-10">
-                  <IngredientIcon ingredient={ingredient} className="h-5 w-5 sm:h-6 sm:w-6" />
+            <li key={ingredient} className="flex min-w-0 flex-1 justify-center">
+                <span role="img" aria-label={ingredientLabels[ingredient]} title={ingredientLabels[ingredient]} className="grid h-3.5 w-3.5 shrink-0 place-items-center rounded-full bg-brand-soft text-brand min-[480px]:h-5 min-[480px]:w-5 sm:h-6 sm:w-6 md:h-5 md:w-5 lg:h-6 lg:w-6">
+                  <IngredientIcon ingredient={ingredient} className="h-2.5 w-2.5 min-[480px]:h-3 min-[480px]:w-3 sm:h-4 sm:w-4 md:h-3 md:w-3 lg:h-4 lg:w-4" />
                 </span>
               </li>
             )}
           </ul>
+          <p className="mt-2 line-clamp-3 min-h-14 text-xs leading-relaxed text-ink-muted sm:text-sm">{item.description}</p>
         </div>
 
         <div className="mt-auto flex flex-col items-stretch gap-3 pt-5 sm:flex-row sm:items-center sm:pt-6">
