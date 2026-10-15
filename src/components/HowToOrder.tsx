@@ -1,5 +1,6 @@
-import { MapPinIcon, MessageCircleIcon, PhoneIcon } from 'lucide-react';
+import { MapPinIcon, PhoneIcon } from 'lucide-react';
 import { FloatingIngredients } from './FloatingIngredients';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { contact } from '../data/contact';
 import { generalOrderLink } from '../utils/order';
 import type { Floater } from '../types/menu';
@@ -41,7 +42,7 @@ export function HowToOrder() {
               rel="noopener noreferrer"
               className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-brand px-6 text-[15px] font-semibold text-white transition-colors duration-150 hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">
 
-              <MessageCircleIcon className="h-4 w-4" aria-hidden="true" />
+              <WhatsAppIcon className="h-4 w-4" />
               Order on WhatsApp
             </a>
             <a

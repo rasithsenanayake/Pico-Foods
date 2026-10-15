@@ -1,4 +1,5 @@
-import { MessageCircleIcon, PhoneIcon } from 'lucide-react';
+import { PhoneIcon } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { contact } from '../data/contact';
 import { generalOrderLink } from '../utils/order';
 
@@ -19,7 +20,7 @@ export function MobileOrderBar() {
           rel="noopener noreferrer"
           className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full bg-brand text-[15px] font-semibold text-white active:bg-brand-dark">
 
-          <MessageCircleIcon className="h-5 w-5" aria-hidden="true" />
+          <WhatsAppIcon className="h-5 w-5" />
           Order on WhatsApp
         </a>
       </div>

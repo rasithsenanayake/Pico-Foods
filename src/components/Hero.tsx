@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import { ArrowDownIcon, MapPinIcon, MessageCircleIcon } from 'lucide-react';
+import { ArrowDownIcon, MapPinIcon } from 'lucide-react';
 import { FloatingIngredients } from './FloatingIngredients';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { generalOrderLink } from '../utils/order';
 import type { Floater } from '../types/menu';
 
@@ -59,7 +60,7 @@ export function Hero() {
               rel="noopener noreferrer"
               className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-7 text-[15px] font-semibold text-brand ring-1 ring-line transition-colors duration-150 hover:bg-brand-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-brand">
 
-              <MessageCircleIcon className="h-4 w-4" aria-hidden="true" />
+              <WhatsAppIcon className="h-4 w-4" />
               Order on WhatsApp
             </a>
           </div>

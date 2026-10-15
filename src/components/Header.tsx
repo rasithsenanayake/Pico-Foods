@@ -1,6 +1,7 @@
-import { MapPinIcon, MessageCircleIcon } from 'lucide-react';
+import { MapPinIcon } from 'lucide-react';
 import { Logo } from './Logo';
 import { SocialLinks } from './SocialLinks';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { generalOrderLink } from '../utils/order';
 
 const navLinks = [
@@ -41,7 +42,7 @@ export function Header() {
             rel="noopener noreferrer"
             className="hidden h-10 items-center gap-2 whitespace-nowrap rounded-full bg-brand px-5 text-sm font-semibold text-white transition-colors duration-150 hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 md:inline-flex">
 
-            <MessageCircleIcon className="h-4 w-4" aria-hidden="true" />
+            <WhatsAppIcon className="h-4 w-4" />
             Order now
           </a>
         </div>
