@@ -32,7 +32,7 @@ export function BowlPreview({ item, onClose }: BowlPreviewProps) {
     >
       {item && (
         <article>
-          <div className="group relative aspect-[1.45] overflow-hidden bg-white">
+          <div className="group relative aspect-[4/3] overflow-hidden bg-[#fbfcfa]">
             <MenuPhoto item={item} sizes="(max-width: 600px) 94vw, 540px" />
             <button
               type="button"

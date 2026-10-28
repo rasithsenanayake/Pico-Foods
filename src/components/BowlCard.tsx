@@ -29,7 +29,7 @@ export function BowlCard({
         type="button"
         onClick={onPreview}
         aria-label={`View details for ${item.name}`}
-        className="group relative aspect-[1.28] w-full overflow-hidden bg-[#fbfaf8] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+        className="group relative aspect-[4/3] w-full overflow-hidden bg-[#fbfcfa] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
       >
         <MenuPhoto item={item} sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 370px" />
         <span className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-white/95 text-brand shadow-sm">
