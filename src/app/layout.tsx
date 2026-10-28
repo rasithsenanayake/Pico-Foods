@@ -17,7 +17,7 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: 'Pico Foods | Fresh Bowls in Homagama',
-  description: 'Fresh rice, sweet potato, and salad bowls delivered around Homagama, Sri Lanka. Browse the menu and order on WhatsApp.',
+  description: 'Explore Pico Foods chicken, prawn, thalapath fish, fresh salads, and protein-focused meals. Order freshly prepared bowls around Homagama, Sri Lanka.',
   icons: {
     icon: '/pico-foods-favicon.webp',
   },

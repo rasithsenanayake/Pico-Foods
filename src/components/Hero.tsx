@@ -1,11 +1,10 @@
-import Image from 'next/image';
 import { ArrowDownIcon, MapPinIcon } from 'lucide-react';
 import { FloatingIngredients } from './FloatingIngredients';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { MenuPhoto } from './MenuPhoto';
+import { menuItems } from '../data/menu';
 import { generalOrderLink } from '../utils/order';
 import type { Floater } from '../types/menu';
-
-const HERO_IMAGE = "/53c1e7a0-ac85-456b-abaa-e997d90e8b38.webp";
 
 
 const bowlFloaters: Floater[] = [
@@ -42,8 +41,7 @@ export function Hero() {
             <span className="text-brand">made to fuel you.</span>
           </h1>
           <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-ink-muted sm:text-lg lg:mx-0">
-            Protein-packed rice, sweet potato and salad bowls finished with our homemade signature
-            sauce — delivered fresh around Homagama.
+            Rice bowls, sweet potatoes, pasta, fresh salads and protein-packed favourites — made fresh and delivered around Homagama.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
@@ -66,25 +64,19 @@ export function Hero() {
           </div>
 
           <p className="mt-6 text-sm text-ink-muted">
-            Bowls from <span className="font-semibold text-ink">Rs. 750</span> · Made fresh daily
+            Meals from <span className="font-semibold text-ink">Rs. 650</span> · Made fresh daily
           </p>
         </div>
 
         <div className="relative order-1 mx-auto aspect-square w-full max-w-[340px] sm:max-w-[460px] lg:order-2 lg:max-w-[520px]">
           <div className="absolute inset-[6%] rounded-full bg-brand-light" />
           <div className="absolute inset-[12%] overflow-hidden rounded-full bg-white shadow-[0_30px_60px_-30px_rgba(23,36,27,0.45)]">
-            <Image
-              src={HERO_IMAGE}
-              fill
-              sizes="(max-width: 1024px) 82vw, 520px"
-              preload
-              alt="Chicken Power Bowl with rice, grilled chicken, egg, avocado and sweet corn"
-              className="h-full w-full scale-[1.18] object-cover" />
+            <MenuPhoto item={menuItems[0]} sizes="(max-width: 1024px) 82vw, 520px" priority className="scale-[1.1]" />
 
           </div>
           <FloatingIngredients items={bowlFloaters} />
           <div className="absolute bottom-[4%] right-[14%] rounded-2xl bg-white px-4 py-2.5 shadow-[0_12px_30px_-12px_rgba(23,36,27,0.3)] ring-1 ring-line">
-            <p className="text-xs text-ink-muted">Chicken Power Bowl</p>
+            <p className="text-xs text-ink-muted">Golden Crunch</p>
             <p className="font-display text-lg font-semibold text-brand">Rs. 950</p>
           </div>
         </div>

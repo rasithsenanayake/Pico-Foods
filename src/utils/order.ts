@@ -8,10 +8,11 @@ export function whatsappLink(message: string): string {
   return `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(message)}`;
 }
 
-interface OrderItem {
+export interface OrderItem {
   name: string;
   quantity: number;
   price: number;
+  optionLabel?: string;
 }
 
 export function itemOrderLink(name: string, qty: number, price: number, deliveryAddress: string): string {
@@ -19,8 +20,8 @@ export function itemOrderLink(name: string, qty: number, price: number, delivery
 }
 
 export function orderItemsLink(items: OrderItem[], deliveryAddress: string): string {
-  const formattedItems = items.map(({ name, quantity, price }) =>
-    `${quantity} × ${name} — ${formatRs(price * quantity)}`
+  const formattedItems = items.map(({ name, optionLabel, quantity, price }) =>
+    `${quantity} × ${name}${optionLabel ? ` (${optionLabel})` : ''} — ${formatRs(price * quantity)}`
   );
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
