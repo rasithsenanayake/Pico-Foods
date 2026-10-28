@@ -29,7 +29,6 @@ export interface MenuItem {
   ingredients: MenuIngredient[];
   options: MenuOption[];
   image: string;
-  fallbackImage: string;
   imageAlt: string;
 }
 

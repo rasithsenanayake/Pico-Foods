@@ -25,25 +25,13 @@ export const menuSections: MenuSectionInfo[] = [
   }
 ];
 
-const backup = {
-  rice: '/99b601dc-0a13-49f5-a6e0-1caa8e36a310.webp',
-  sweet: '/1a4f1504-7189-4213-9f20-745a5af666e5.webp',
-  salad: '/953281d1-6a4a-4dbc-9ded-39dee4ca4c41.webp',
-  garden: '/a261b686-a843-4382-b968-0bef415d2e7a.webp',
-  potato: '/4d4e921e-cccb-439d-b293-294ae7e679f9.webp',
-  rainbow: '/378b7f7e-443d-481b-9197-b64c2c0409a7.webp'
-};
-
 const serving = (id: 'medium' | 'large', price: number, calories: string) =>
   ({ id, label: id === 'medium' ? 'Medium' : 'Large', price, calories });
 
 const regular = (price: number, calories: string, protein?: string) =>
   [{ id: 'regular' as const, label: 'Regular', price, calories, ...(protein ? { protein } : {}) }];
 
-const base = (id: string, fallbackImage: string) => ({
-  image: `/menu/${id}.webp`,
-  fallbackImage
-});
+const base = (id: string) => ({ image: `/menu/${id}.webp` });
 
 export const menuItems: MenuItem[] = [
   {
@@ -57,7 +45,7 @@ export const menuItems: MenuItem[] = [
       { name: 'Signature sauce', amount: '' }
     ],
     options: [serving('medium', 950, '480–570'), serving('large', 1200, '600–750')],
-    ...base('golden-crunch', backup.rice),
+    ...base('golden-crunch'),
     imageAlt: 'Golden Crunch chicken and rice with boiled egg, corn, salad and mixed nuts in a square kraft bowl'
   },
   {
@@ -71,7 +59,7 @@ export const menuItems: MenuItem[] = [
       { name: 'Signature sauce', amount: '' }
     ],
     options: [serving('medium', 950, '420–520'), serving('large', 1200, '550–680')],
-    ...base('sunkissed-bowl', backup.sweet),
+    ...base('sunkissed-bowl'),
     imageAlt: 'Sunkissed chicken and roasted sweet potato bowl with egg and sweet corn'
   },
   {
@@ -85,7 +73,7 @@ export const menuItems: MenuItem[] = [
       { name: 'Signature sauce', amount: '' }
     ],
     options: [serving('medium', 1450, '600–750'), serving('large', 1700, '750–950')],
-    ...base('creamy-crave', backup.potato),
+    ...base('creamy-crave'),
     imageAlt: 'Creamy Crave pasta with garlic chicken, egg, salad and corn in square cardboard packaging'
   },
   {
@@ -99,7 +87,7 @@ export const menuItems: MenuItem[] = [
       { name: 'Signature sauce', amount: '' }
     ],
     options: [serving('medium', 1100, '450–560'), serving('large', 1400, '580–730')],
-    ...base('ocean-gold', backup.rice),
+    ...base('ocean-gold'),
     imageAlt: 'Ocean Gold prawn and rice bowl with egg, vegetables and sweet corn in cardboard tray'
   },
   {
@@ -113,7 +101,7 @@ export const menuItems: MenuItem[] = [
       { name: 'Signature sauce', amount: '' }
     ],
     options: [serving('medium', 1100, '450–580'), serving('large', 1400, '600–760')],
-    ...base('island-harvest', backup.rice),
+    ...base('island-harvest'),
     imageAlt: 'Island Harvest thalapath fish and rice with sliced egg and corn in kraft bowl'
   },
   {
@@ -126,7 +114,7 @@ export const menuItems: MenuItem[] = [
       { name: 'Mixed nuts', amount: '10 g' }, { name: 'Signature sauce', amount: '20 g' }
     ],
     options: regular(650, '300–400'),
-    ...base('creamy-garden-crunch', backup.salad),
+    ...base('creamy-garden-crunch'),
     imageAlt: 'Creamy egg and potato salad with corn, crunchy vegetables and mixed nuts in kraft cardboard bowl'
   },
   {
@@ -139,7 +127,7 @@ export const menuItems: MenuItem[] = [
       { name: 'Mixed nuts', amount: '10 g' }, { name: 'Signature sauce', amount: '20 g' }
     ],
     options: regular(900, '400–550'),
-    ...base('chicken-chickpea-fresh-bowl', backup.garden),
+    ...base('chicken-chickpea-fresh-bowl'),
     imageAlt: 'Chicken chickpea fresh salad with vegetables and corn in a square cardboard bowl'
   },
   {
@@ -153,7 +141,7 @@ export const menuItems: MenuItem[] = [
       { name: 'Signature sauce', amount: '20 g' }
     ],
     options: regular(850, '400–600'),
-    ...base('herb-harvest', backup.potato),
+    ...base('herb-harvest'),
     imageAlt: 'Herb chicken potato salad with cucumbers, vegetables and sweet corn in kraft bowl'
   },
   {
@@ -167,7 +155,7 @@ export const menuItems: MenuItem[] = [
       { name: 'Signature sauce', amount: '25 g' }
     ],
     options: regular(1150, '800–900', '65–75'),
-    ...base('muscle-builder', backup.rice),
+    ...base('muscle-builder'),
     imageAlt: 'Muscle Builder chicken rice bowl with eggs, vegetables, corn and nuts in square cardboard tray'
   },
   {
@@ -181,7 +169,7 @@ export const menuItems: MenuItem[] = [
       { name: 'Signature sauce', amount: '25 g' }
     ],
     options: regular(1250, '850–1,000', '65–75'),
-    ...base('iron-plate', backup.potato),
+    ...base('iron-plate'),
     imageAlt: 'Iron Plate with chicken, potatoes, sliced boiled eggs and broccoli in square cardboard tray'
   },
   {
@@ -194,7 +182,7 @@ export const menuItems: MenuItem[] = [
       { name: 'Mixed nuts', amount: '15 g' }, { name: 'Signature sauce', amount: '25 g' }
     ],
     options: regular(1200, '650–800', '70–80'),
-    ...base('protein-crunch', backup.garden),
+    ...base('protein-crunch'),
     imageAlt: 'Protein Crunch chicken egg salad with sweet corn and vegetables in square cardboard bowl'
   },
   {
@@ -208,7 +196,7 @@ export const menuItems: MenuItem[] = [
       { name: 'Signature sauce', amount: '25 g' }
     ],
     options: regular(1350, '950–1,100', '75–85'),
-    ...base('mass-gainer', backup.sweet),
+    ...base('mass-gainer'),
     imageAlt: 'Mass Gainer chicken sweet potato chickpea bowl with vegetables, eggs-free serving in cardboard tray'
   }
 ];
