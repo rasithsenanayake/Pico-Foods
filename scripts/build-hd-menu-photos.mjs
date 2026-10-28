@@ -1,5 +1,5 @@
 /**
- * Generate dedicated, high-quality WebP deliverables from the current 12 menu
+ * Prepare consistently cropped WebP assets from the current 12 menu
  * source photographs. Designed to be deterministic and safe to run in CI.
  *
  * IMPORTANT: Upsampling cannot introduce detail missing in the original photo.
@@ -19,8 +19,7 @@ const dishes = [
   'herb-harvest', 'muscle-builder', 'iron-plate', 'protein-crunch', 'mass-gainer'
 ];
 
-// The legacy 800x600 menu pictures contain two spliced seams at the
-// very top and bottom. Exclude them, without cutting off the food.
+// The original 800x600 files contain spliced seams near the top/bottom. Exclude them, without cutting off the food.
 const legacySource = { width: 800, height: 600 };
 const bowlCrop = { left: 83, top: 58, width: 634, height: 478 };
 
@@ -36,20 +35,24 @@ for (const name of dishes) {
   const pipeline = sharp(src).rotate();
   if (isLegacy) pipeline.extract(bowlCrop);
   const output = await pipeline
-    .resize(1600, 1200, {
+    // Keep processed output near the actual source resolution. Artificially
+    // enlarging 634x478 crops to 1600x1200 produced no additional detail.
+    // Next/Image creates the final responsive derivatives for each viewport.
+    .resize(isLegacy ? 960 : undefined, isLegacy ? 720 : undefined, {
       fit: 'cover',
       position: 'centre',
-      kernel: sharp.kernel.lanczos3
+      kernel: sharp.kernel.lanczos3,
+      withoutEnlargement: !isLegacy
     })
-    .modulate({ brightness: 1.01, saturation: 1.065 })
-    .sharpen({ sigma: 1.3, m1: 0.35, m2: 1.7 })
-    .webp({ quality: 96, effort: 5, smartSubsample: true })
+    .modulate({ brightness: 1.025, saturation: 1.08 })
+    .sharpen({ sigma: 1.05, m1: 0.28, m2: 1.4 })
+    .webp({ quality: 94, effort: 5, smartSubsample: true })
     .toFile(dst);
-  if (output.width !== 1600 || output.height !== 1200) {
-    throw new Error('Unexpected output dimensions for ' + name);
+  if (!output.width || !output.height || output.width < 600 || output.height < 450) {
+    throw new Error('Dish photo was unexpectedly small: ' + name);
   }
   count += 1;
-  process.stdout.write('Prepared ' + name + ' (1600x1200; ' + Math.round(output.size / 1024) + ' KB)\n');
+  process.stdout.write('Prepared ' + name + ' (' + output.width + 'x' + output.height + '; ' + Math.round(output.size / 1024) + ' KB)\n');
 }
 if (count !== 12) throw new Error('Menu photo output incomplete');
 console.log('Prepared all ' + count + ' menu photos.');

@@ -30,8 +30,7 @@ export function MenuPhoto({ item, sizes, priority = false, className = '' }: Men
       fill
       sizes={sizes}
       priority={priority}
-      quality={100}
-      unoptimized
+      quality={95}
       onError={() => setFailed(true)}
       className={`object-contain object-center transition-transform duration-500 group-hover:scale-[1.02] ${className}`}
     />
