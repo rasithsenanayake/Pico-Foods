@@ -12,31 +12,17 @@ import sharp from 'sharp';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const sourceDirectory = path.join(root, 'public', 'menu');
-const destinationDirectory = path.join(root, 'public', 'menu-clean');
+const destinationDirectory = path.join(root, 'public', 'menu-polished');
 const dishes = [
   'golden-crunch', 'sunkissed-bowl', 'creamy-crave', 'ocean-gold',
   'island-harvest', 'creamy-garden-crunch', 'chicken-chickpea-fresh-bowl',
   'herb-harvest', 'muscle-builder', 'iron-plate', 'protein-crunch', 'mass-gainer'
 ];
 
-// The current 800x600 renders contain visible horizontal seams near their
-// bottom edge. Crop those defects at source rather than magnifying them.
-// These coordinates apply ONLY to the legacy originals; authentic replacement
-// photography at other resolutions is processed without cropping.
-const legacySeamCutoffs = {
-  'golden-crunch': 543,
-  'sunkissed-bowl': 546,
-  'creamy-crave': 541,
-  'ocean-gold': 590,
-  'island-harvest': 594,
-  'creamy-garden-crunch': 518,
-  'chicken-chickpea-fresh-bowl': 531,
-  'herb-harvest': 514,
-  'muscle-builder': 508,
-  'iron-plate': 513,
-  'protein-crunch': 515,
-  'mass-gainer': 503
-};
+// The legacy 800x600 menu pictures contain two spliced seams at the
+// very top and bottom. Exclude them, without cutting off the food.
+const legacySource = { width: 800, height: 600 };
+const bowlCrop = { left: 83, top: 58, width: 634, height: 478 };
 
 
 await mkdir(destinationDirectory, { recursive: true });
@@ -46,37 +32,24 @@ for (const name of dishes) {
   const dst = path.join(destinationDirectory, name + '.webp');
   await stat(src); // Fail the build if a menu photo has gone missing.
   const metadata = await sharp(src).metadata();
-  const legacy = metadata.width === 800 && metadata.height === 600;
-  const top = 85;
-  const bottom = legacySeamCutoffs[name];
-  const cropHeight = bottom - top;
-  const cropWidth = Math.round(cropHeight * (4 / 3));
+  const isLegacy = metadata.width === legacySource.width && metadata.height === legacySource.height;
   const pipeline = sharp(src).rotate();
-  // Focus on the meal itself. Removing the baked-in divider also prevents
-  // the horizontal white strip visible in product cards.
-  if (legacy) {
-    pipeline.extract({
-      left: Math.round((800 - cropWidth) / 2),
-      top,
-      width: cropWidth,
-      height: cropHeight
-    });
-  }
+  if (isLegacy) pipeline.extract(bowlCrop);
   const output = await pipeline
-    .resize(1920, 1440, {
+    .resize(1600, 1200, {
       fit: 'cover',
       position: 'centre',
       kernel: sharp.kernel.lanczos3
     })
-    .modulate({ brightness: 1.025, saturation: 1.045 })
-    .sharpen({ sigma: 1.15, m1: 0.25, m2: 1.8 })
-    .webp({ quality: 94, effort: 5, smartSubsample: true })
+    .modulate({ brightness: 1.01, saturation: 1.065 })
+    .sharpen({ sigma: 1.3, m1: 0.35, m2: 1.7 })
+    .webp({ quality: 96, effort: 5, smartSubsample: true })
     .toFile(dst);
-  if (output.width !== 1920 || output.height !== 1440) {
+  if (output.width !== 1600 || output.height !== 1200) {
     throw new Error('Unexpected output dimensions for ' + name);
   }
   count += 1;
-  process.stdout.write('Prepared ' + name + ' (1920x1440; ' + Math.round(output.size / 1024) + ' KB)\n');
+  process.stdout.write('Prepared ' + name + ' (1600x1200; ' + Math.round(output.size / 1024) + ' KB)\n');
 }
 if (count !== 12) throw new Error('Menu photo output incomplete');
 console.log('Prepared all ' + count + ' menu photos.');
