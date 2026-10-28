@@ -31,7 +31,7 @@ const serving = (id: 'medium' | 'large', price: number, calories: string) =>
 const regular = (price: number, calories: string, protein?: string) =>
   [{ id: 'regular' as const, label: 'Regular', price, calories, ...(protein ? { protein } : {}) }];
 
-const base = (id: string) => ({ image: `/menu-hd/${id}.webp` });
+const base = (id: string) => ({ image: `/menu-clean/${id}.webp` });
 
 export const menuItems: MenuItem[] = [
   {
