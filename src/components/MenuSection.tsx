@@ -74,11 +74,11 @@ export function MenuSection() {
               {section.subtitle && <p className="mt-1 text-sm text-ink-muted">{section.subtitle}</p>}
             </div>
 
-            <div className="space-y-12">
+            <div className={section.id === 'everyday' ? 'grid grid-cols-1 gap-x-6 gap-y-12 md:grid-cols-2' : 'space-y-12'}>
               {section.collections.map((collection) => {
                 const dishes = menuItems.filter((item) => item.category === collection.id);
                 return (
-                  <section key={collection.id} aria-labelledby={`collection-${collection.id}`}>
+                  <section key={collection.id} aria-labelledby={`collection-${collection.id}`} className={section.id === 'everyday' && collection.id === 'chicken' ? 'md:col-span-2' : ''}>
                     <div className="mb-4 flex items-center justify-between gap-4">
                       <h4 id={`collection-${collection.id}`} className="font-sans text-lg font-bold tracking-tight text-brand sm:text-xl">
                         {collection.label}
@@ -101,7 +101,7 @@ export function MenuSection() {
                     <div
                       ref={(element) => { scrollers.current[collection.id] = element; }}
                       aria-label={`${collection.label} dishes`}
-                      className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-5 pb-6 [-webkit-overflow-scrolling:touch] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3"
+                      className={`-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-5 pb-6 [-webkit-overflow-scrolling:touch] sm:mx-0 sm:grid sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 ${section.id === 'everyday' && collection.id !== 'chicken' ? 'sm:grid-cols-1' : 'sm:grid-cols-2 lg:grid-cols-3'}`}
                     >
                       {dishes.map((item) => {
                         const selected = item.options.find((option) => option.id === selectedOptions[item.id]) ?? item.options[0];
