@@ -1,20 +1,17 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Image from 'next/image';
-import { XIcon } from 'lucide-react';
-import { IngredientIcon } from './IngredientIcon';
-import { ingredientLabels } from '../data/ingredients';
+import { Flame, Dumbbell, X } from 'lucide-react';
+import { MenuPhoto } from './MenuPhoto';
 import { formatRs } from '../utils/order';
 import type { MenuItem } from '../types/menu';
 
 interface BowlPreviewProps {
   item: MenuItem | null;
-  categoryLabel: string;
   onClose: () => void;
 }
 
-export function BowlPreview({ item, categoryLabel, onClose }: BowlPreviewProps) {
+export function BowlPreview({ item, onClose }: BowlPreviewProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -27,64 +24,57 @@ export function BowlPreview({ item, categoryLabel, onClose }: BowlPreviewProps) 
     <dialog
       ref={dialogRef}
       aria-labelledby="bowl-preview-title"
-      aria-modal="true"
       onClose={onClose}
-      className="fixed inset-0 m-0 h-screen max-h-[100dvh] w-full max-w-none overflow-hidden border-0 bg-transparent p-0 text-ink backdrop:bg-ink/50">
-      {item &&
-      <div
-        className="flex min-h-full items-end justify-center sm:items-center sm:p-6"
-        onClick={(event) => {
-          if (event.target === event.currentTarget) dialogRef.current?.close();
-        }}>
-        <article className="relative max-h-[90vh] max-h-[90dvh] w-full max-w-lg overflow-y-auto overscroll-contain rounded-t-[28px] bg-white shadow-[0_-20px_60px_-20px_rgba(23,36,27,0.35)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:rounded-[28px]">
-          <div className="relative aspect-[16/9] overflow-hidden bg-brand-soft">
-            <Image
-              src={item.image}
-              alt={item.imageAlt}
-              fill
-              sizes="(max-width: 639px) 100vw, 512px"
-              className="object-cover" />
-            <span className="absolute left-4 top-4 rounded-full bg-white/95 px-2.5 py-1 text-xs font-semibold tabular-nums text-brand">
-              {item.number}
-            </span>
+      onClick={(event) => {
+        if (event.target === event.currentTarget) dialogRef.current?.close();
+      }}
+      className="fixed inset-0 m-auto max-h-[94dvh] w-[min(94vw,540px)] overflow-y-auto rounded-[28px] border-0 bg-white p-0 text-ink shadow-2xl backdrop:bg-[#17241b]/60"
+    >
+      {item && (
+        <article>
+          <div className="group relative aspect-[1.45] overflow-hidden bg-white">
+            <MenuPhoto item={item} sizes="(max-width: 600px) 94vw, 540px" />
             <button
               type="button"
               onClick={() => dialogRef.current?.close()}
-              aria-label="Close bowl details"
-              className="absolute right-3 top-3 grid h-11 w-11 place-items-center rounded-full bg-white/95 text-ink-muted transition-colors hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand">
-              <XIcon className="h-5 w-5" aria-hidden="true" />
-            </button>
+              aria-label="Close details"
+              className="absolute right-3 top-3 grid h-11 w-11 place-items-center rounded-full bg-white/95 text-brand shadow-sm focus-visible:ring-2 focus-visible:ring-brand"
+            ><X className="h-5 w-5" aria-hidden="true" /></button>
           </div>
-
-          <div className="p-5 pb-[max(env(safe-area-inset-bottom),20px)] sm:p-7">
-            <p className="text-xs font-medium text-brand">{categoryLabel}</p>
-            <div className="mt-1.5 flex flex-wrap items-start justify-between gap-x-4 gap-y-1">
-              <h2 id="bowl-preview-title" className="min-w-0 flex-1 font-display text-2xl font-semibold leading-tight text-ink sm:text-3xl">
-                {item.name}
-              </h2>
-              <p className="shrink-0 font-display text-xl font-semibold text-brand sm:text-2xl">
-                {formatRs(item.price)}
-              </p>
+          <div className="p-6 pb-8">
+            <h2 id="bowl-preview-title" className="font-sans text-2xl font-bold tracking-tight">{item.name}</h2>
+            <p className="mt-1 text-sm text-ink-muted">{item.subtitle}</p>
+            <p className="mt-4 text-sm leading-relaxed text-ink-muted">{item.description}</p>
+            <h3 className="mt-6 border-t border-line pt-5 text-base font-semibold">Portions & nutrition</h3>
+            <div className="mt-3 space-y-2">
+              {item.options.map((option) => (
+                <div key={option.id} className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-brand-soft px-3 py-3 text-sm">
+                  <div>
+                    <p className="font-semibold">{option.label}</p>
+                    <p className="mt-1 flex flex-wrap items-center gap-3 text-xs text-ink-muted">
+                      <span className="inline-flex items-center gap-1"><Flame className="h-3.5 w-3.5" /> {option.calories} kcal</span>
+                      {option.protein && <span className="inline-flex items-center gap-1"><Dumbbell className="h-3.5 w-3.5" /> {option.protein} g protein</span>}
+                    </p>
+                  </div>
+                  <strong className="tabular-nums text-brand">{formatRs(option.price)}</strong>
+                </div>
+              ))}
             </div>
-
-            <section className="mt-5 border-t border-line pt-4" aria-labelledby="bowl-preview-inside">
-              <h3 id="bowl-preview-inside" className="font-display text-lg font-semibold text-ink">What's inside</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.description}</p>
-              <ul className="mt-4 divide-y divide-line">
-                {item.ingredients.map((ingredient) =>
-                <li key={ingredient} className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0">
-                  <span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-soft text-brand">
-                    <IngredientIcon ingredient={ingredient} className="h-5 w-5" />
-                  </span>
-                  <span className="text-sm font-medium text-ink">{ingredientLabels[ingredient]}</span>
+            <h3 className="mt-6 border-t border-line pt-5 text-base font-semibold">What’s inside</h3>
+            <ul className="mt-3 divide-y divide-line">
+              {item.ingredients.map((ingredient) => (
+                <li key={ingredient.name} className="flex items-start justify-between gap-4 py-2.5 text-sm">
+                  <span className="text-ink-muted">{ingredient.name}</span>
+                  {ingredient.amount && <span className="shrink-0 font-medium tabular-nums">{ingredient.amount}</span>}
                 </li>
-                )}
-              </ul>
-            </section>
+              ))}
+            </ul>
+            <p className="mt-4 text-xs leading-relaxed text-ink-muted">
+              Nutrition values are estimates. Raw and cooked weights are identified where applicable.
+            </p>
           </div>
         </article>
-      </div>
-      }
+      )}
     </dialog>
   );
 }
