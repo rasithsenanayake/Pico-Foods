@@ -28,7 +28,7 @@ export function BowlPreview({ item, onClose }: BowlPreviewProps) {
       onClick={(event) => {
         if (event.target === event.currentTarget) dialogRef.current?.close();
       }}
-      className="fixed inset-0 m-auto max-h-[94dvh] w-[min(94vw,540px)] overflow-y-auto rounded-[28px] border-0 bg-white p-0 text-ink shadow-2xl backdrop:bg-[#17241b]/60"
+      className="no-scrollbar fixed inset-0 m-auto max-h-[94dvh] w-[min(94vw,540px)] overflow-y-auto overscroll-contain rounded-[28px] border-0 bg-white p-0 text-ink shadow-2xl backdrop:bg-[#17241b]/60"
     >
       {item && (
         <article>
